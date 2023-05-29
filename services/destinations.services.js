@@ -1,4 +1,4 @@
-const { Destination } = require("../models")
+const { DestinationModel } = require("../models")
 
 
 
@@ -9,7 +9,7 @@ const findAllDestination = async (limit = 15, from = 0, notPaginate = false) => 
     }
     try {
         if (notPaginate) {
-            const destinations = await Destination.find(query)
+            const destinations = await DestinationModel.find(query)
             return {
                 message: `Destinations founds`,
                 status: 200,
@@ -18,7 +18,7 @@ const findAllDestination = async (limit = 15, from = 0, notPaginate = false) => 
                 destinations
             }
         }
-        const destinations = await Destination.find(query)
+        const destinations = await DestinationModel.find(query)
             .skip(Number(from))
             .limit(Number(limit))
         return {
@@ -40,7 +40,7 @@ const findAllDestination = async (limit = 15, from = 0, notPaginate = false) => 
 
 const findDestinationById = async (id = "") => {
     try {
-        const destination = await Destination.findById({_id:id})
+        const destination = await DestinationModel.findById({_id:id})
         if (destination) {
             return {
                 message: `Destination found`,
@@ -64,7 +64,7 @@ const findDestinationById = async (id = "") => {
 
 const findDestinationByNameNotId = async (name = "",id="") => {
     try {
-        const destination = await Destination.findOne({name,_id: { $ne: id }})
+        const destination = await DestinationModel.findOne({name,_id: { $ne: id }})
         if (destination) {
             return {
                 message: `The name: ${name} is in use`,
@@ -93,7 +93,7 @@ const createdDestination = async (datainput) => {
             name,
             description,
             attactions,
-            actiities,
+            activities,
             services,
             rating
         } = datainput;
@@ -101,11 +101,11 @@ const createdDestination = async (datainput) => {
             name,
             description,
             attactions,
-            actiities,
+            activities,
             services,
             rating
         }
-        const destination = new Destination(datamodel)
+        const destination = new DestinationModel(datamodel)
         await destination.save()
         return {
             message: `Destination created`,
@@ -127,7 +127,7 @@ const updatedDestination = async (id,datainput) => {
             name,
             description,
             attactions,
-            actiities,
+            activities,
             services,
             rating
         } = datainput;
@@ -135,7 +135,7 @@ const updatedDestination = async (id,datainput) => {
             name,
             description,
             attactions,
-            actiities,
+            activities,
             services,
             rating
         }
@@ -146,7 +146,7 @@ const updatedDestination = async (id,datainput) => {
                 status: 400
             }
         }
-        const destinationUp = await Destination.findByIdAndUpdate(id,datamodel,{new:true})
+        const destinationUp = await DestinationModel.findByIdAndUpdate(id,datamodel,{new:true})
         await destinationUp.save()
         return {
             message: `Destination updated`,
@@ -168,7 +168,7 @@ const deletedDestination = async (id="") => {
         const datamodel = {
             status:false
         }
-        const destination = await Destination.findByIdAndUpdate(id,datamodel,{new:true})
+        const destination = await DestinationModel.findByIdAndUpdate(id,datamodel,{new:true})
         await destination.save()
         return {
             message: `Destination deleted`,

@@ -35,10 +35,10 @@ const getDestinationById = async (req = request, res = response) => {
 
 
 const postDestination = async (req = request, res = response) => {
-    const { status, message, user } = await createdDestination(req.body)
+    const { status, message, destination } = await createdDestination(req.body)
     return res.status(status).json({
         message,
-        user
+        destination
     });
 }
 const putDestination = async (req = request, res = response) => {

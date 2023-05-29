@@ -3,8 +3,6 @@ const cors = require('cors')
 const fileUpload= require('express-fileupload');
 const { dbConnection } = require('./database.config');
 class Server {
-
-
     constructor() {
         this.app = express()
         this.port = process.env.PORT | 3500
@@ -13,9 +11,8 @@ class Server {
         this.paths = {
             auth:this.pre+'/auth',
             users: this.pre + '/users',
-            destinies: this.pre + '/destinations'
+            destinations: this.pre + '/destinations'
         };
-
         this.connectDB()
         this.middlewares()
         this.routes()
@@ -37,6 +34,7 @@ class Server {
     routes() {
         this.app.use(this.paths.auth,require('../routes/auth.route'));
         this.app.use(this.paths.users,require('../routes/user.route'));
+        this.app.use(this.paths.destinations,require('../routes/destination.route'));
     }
 
     async connectDB() {
