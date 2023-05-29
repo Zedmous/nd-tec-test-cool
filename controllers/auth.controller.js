@@ -20,17 +20,6 @@ const logIn = async (req = request, res = response) => {
     
 }
 
-const registerUser=async (req = request, res = response)=>{
-    
-
-    const user= await createUser(req.body)
-    return res.json({
-        message:"register",
-        user
-    });
-}
-
-
 const renewToken = (req = request, res = response) => {
     return res.json({
         message:"renew token"
@@ -39,6 +28,5 @@ const renewToken = (req = request, res = response) => {
 
 module.exports = {
     logIn,
-    renewToken,
-    registerUser
+    renewToken
 }

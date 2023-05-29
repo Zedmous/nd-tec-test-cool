@@ -1,5 +1,13 @@
 const {User} = require('../models')
+const { findUserById } = require('../services')
 
+
+const existUserById=async(id='')=>{
+    const user=await User.findById({_id:id})
+    if(!user){
+        throw new Error(`The user by id:  ${id} , no exist`)
+    }
+}
 const emailExist=async(email='')=>{
     const existMail=await User.findOne({email})
     if(existMail){
@@ -8,5 +16,6 @@ const emailExist=async(email='')=>{
 }
 
 module.exports={
-    emailExist
+    emailExist,
+    existUserById
 }

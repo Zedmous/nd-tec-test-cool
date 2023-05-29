@@ -1,10 +1,10 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { renewToken, registerUser, logIn } = require('../controllers/auth.controller');
+const { renewToken, logIn } = require('../controllers/auth.controller');
 const { validateFields, validateJWT } = require('../middlewares');
 const { emailExist } = require('../helpers');
-//const { login, googleSignIn, renovarToken } = require('../controllers/auth.controller');
-//const { validarJWT,validarCampos } = require('../middlewares');
+const { postUser } = require('../controllers/user.controller');
+
 const router = Router();
 
 router.post(
@@ -26,7 +26,7 @@ router.post(
         check("role", "It is not an allowed roles").isIn(['ADMIN_ROLE', 'USER_ROLE']),
         validateFields
     ],
-    registerUser)
+    postUser)
 
 router.get('/',
     validateJWT,
