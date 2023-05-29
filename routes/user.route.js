@@ -35,7 +35,6 @@ router.put(
     check("id").custom(existUserById),
     check("firstname", "The firstname field is required").not().isEmpty(),
     check("email", "The email field is invalid").isEmail(),
-    check("email", "Email in use, there is already a user with this email.").custom(emailExist),
     check("password", "The password field requires a minimun of 6 characters").isLength({ min: 6 }),
     check("role", "It is not an allowed roles").isIn(['ADMIN_ROLE', 'USER_ROLE']),
     validateFields],

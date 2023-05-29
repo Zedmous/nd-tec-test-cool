@@ -164,7 +164,7 @@ const createdUser = async (datainput) => {
             firstname,
             lastname,
             email,
-            password: bcryptjs.hashSync(passwor, salt),
+            password: bcryptjs.hashSync(password, salt),
             img,
             role
         }
@@ -200,12 +200,20 @@ const updatedUser = async (id,datainput) => {
             img,
             role
         }
-        const user = await User.findByIdAndUpdate(id,datamodel,{new:true})
-        await user.save()
+
+        const {user}=findUserByEmailNotId(email,id)
+        if(user){
+            return {
+                message: `Email:  ${email} , in use by another user`,
+                status: 400
+            }
+        }
+        const userUp = await User.findByIdAndUpdate(id,datamodel,{new:true})
+        await userUp.save()
         return {
             message: `User updated`,
             status: 201,
-            user
+            user:userUp
         }
     } catch (error) {
         console.log(error)
@@ -245,5 +253,6 @@ module.exports = {
     deletedUser,
     findAllUser,
     findUserByEmail,
+    findUserByEmailNotId,
     findUserById
 }
