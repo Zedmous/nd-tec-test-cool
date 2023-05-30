@@ -58,11 +58,21 @@ const deleteDestination = async (req = request, res = response) => {
     });
 }
 
+const upImgDestination = async (req = request, res = response) => {
+    const {id}=req.params;
+    const { status, message, destination } = await updatedDestination(id,req.body)
+    return res.status(status).json({
+        message,
+        destination
+    });
+}
+
 
 module.exports = {
     getDestinations,
     getDestinationById,
     postDestination,
     putDestination,
-    deleteDestination
+    deleteDestination,
+    upImgDestination
 }

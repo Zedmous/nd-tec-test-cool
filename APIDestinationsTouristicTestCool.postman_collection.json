@@ -1,0 +1,627 @@
+{
+	"info": {
+		"_postman_id": "cf699c75-97e3-4e35-a226-b69cc931e862",
+		"name": "API Destinations Touristic Test Cool",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12032889"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"master@api.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/auth/login",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Este es el endpoint para autenticarse en la api de node js\n\nse creo el usuario de ejemplo automatico para empezar a probar la aplicacion."
+					},
+					"response": []
+				},
+				{
+					"name": "Renew Toke",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDVmNzRhMWY4MTU3YjlkNDgxMzg5YjkiLCJpYXQiOjE2ODQ5NjAwOTcsImV4cCI6MTY4NDk2MzY5N30.N1-a2BTuiRfB2om3sAHFCWp9L058O7kSlOVzNpiX4eg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api}}/auth",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"auth"
+							]
+						},
+						"description": "Esto sirve para renovar el token"
+					},
+					"response": []
+				}
+			],
+			"description": "Obtendremos las rutas de autenticación y renovación de token."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/users",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "from",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "notPaginate",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Busca todos los usuarios en el sistema, sobre todo los usuarios activos."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/users/6472396b3aa533f59a1183e1",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"6472396b3aa533f59a1183e1"
+							],
+							"query": [
+								{
+									"key": "limite",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "desde",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Obtiene un usuario por el id"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"firstname example\",\r\n    \"lastname\": \"lastname example\",\r\n    \"email\": \"example@example.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"USER_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/auth/register",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Sirve para crear un usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDcyMzk2YjNhYTUzM2Y1OWExMTgzZTEiLCJpYXQiOjE2ODUzNjk1MzEsImV4cCI6MTY4NTM3MzEzMX0.UmHKPSHurlqxNOwQb6OkbKKw9zcHFTi2VH5J7XmfISc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"firstname update example\",\r\n    \"lastname\": \"lastname update example\",\r\n    \"email\": \"exampleupdate@example.com\",\r\n    \"role\": \"USER_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/users/6474b3f0a152e2e3c2068331",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"6474b3f0a152e2e3c2068331"
+							]
+						},
+						"description": "Sirve para actualizar los datos de un usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc0YjNmMGExNTJlMmUzYzIwNjgzMzEiLCJpYXQiOjE2ODUzNzAzMzIsImV4cCI6MTY4NTM3MzkzMn0.lXB5wvzruy5JN_c4VrceeY_pIZbIgQ1NjhpTOTfaBzs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api}}/users/6474b3f0a152e2e3c2068331",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"6474b3f0a152e2e3c2068331"
+							]
+						},
+						"description": "Elimina un usuario del sistema."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Destinations",
+			"item": [
+				{
+					"name": "Get All Destinations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/destinations",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"destinations"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "from",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "notPaginate",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Muestra todos los destinos turisticos, puedes solicitar la lista paginada o no paginada, si es paginada puedes indicar el limite y desde que pagina acceder, o de lo contrario el limite por defecto es 15 y la pagina es la 0"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Destination By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/destinations/64750b8a0a00e37ea730fd53",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"destinations",
+								"64750b8a0a00e37ea730fd53"
+							]
+						},
+						"description": "Obtienes el destino tusritico por id."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Destination",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc2NTQ1NzhkOTllZDg0MzM4NGQ1YWQiLCJpYXQiOjE2ODU0NzcxMzksImV4cCI6MTY4NTQ4MDczOX0.I2W_l9SqYSoPWgkeSt77qFvvz0j828fkPxzbeVOAOQY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Example Name\",\r\n    \"description\": \"Example Description\",\r\n    \"attactions\": \"Example Attactions\",\r\n    \"activities\":\"Example Activities\",\r\n    \"services\":\"Example Services\",\r\n    \"rating\": {\r\n        \"one\":1,\r\n        \"two\":2,\r\n        \"three\":3,\r\n        \"four\":4,\r\n        \"five\":5\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/destinations",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"destinations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Destination",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc2NTQ1NzhkOTllZDg0MzM4NGQ1YWQiLCJpYXQiOjE2ODU0NzcxMzksImV4cCI6MTY4NTQ4MDczOX0.I2W_l9SqYSoPWgkeSt77qFvvz0j828fkPxzbeVOAOQY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Example Name update\",\r\n    \"description\": \"Example Description update\",\r\n    \"attactions\": \"Example Attactions update\",\r\n    \"activities\":\"Example Activities update\",\r\n    \"services\":\"Example Services update\",\r\n    \"rating\": {\r\n        \"one\":1,\r\n        \"two\":2,\r\n        \"three\":3,\r\n        \"four\":4,\r\n        \"five\":5\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/destinations/64765747c9d2283c50b5277c",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"destinations",
+								"64765747c9d2283c50b5277c"
+							]
+						},
+						"description": "Sirve para actualizar los datos del destino turistico."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Destination",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDc2NTQ1NzhkOTllZDg0MzM4NGQ1YWQiLCJpYXQiOjE2ODU0NzcxMzksImV4cCI6MTY4NTQ4MDczOX0.I2W_l9SqYSoPWgkeSt77qFvvz0j828fkPxzbeVOAOQY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api}}/destinations/64765747c9d2283c50b5277c",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"destinations",
+								"64765747c9d2283c50b5277c"
+							]
+						},
+						"description": "Sirve para eliminar un destino turistico"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload Archive",
+			"item": [
+				{
+					"name": "Upload Img Destination",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Ejnsi/OneDrive/Imágenes/ImgExample.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/uploads/destinations/647656dd464f96c85f89f74d",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"uploads",
+								"destinations",
+								"647656dd464f96c85f89f74d"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "from",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "noPaginate",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Actualiza lo registra la imagen principal representativa del destino turistico"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Img User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Ejnsi/OneDrive/Imágenes/Img1.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/uploads/users/647654578d99ed843384d5ad",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"uploads",
+								"users",
+								"647654578d99ed843384d5ad"
+							],
+							"query": [
+								{
+									"key": "limite",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "desde",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Actualiza o registra la imagen del perfil del usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Destinations Save Catalogue",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Ejnsi/OneDrive/Imágenes/947da160-b135-4146-816a-90dde4df7a97.jpg"
+								},
+								{
+									"key": "description",
+									"value": "Una breve descripcion de lo que representa la imagen en el destino",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/uploads/destination/save/catalogue/647656dd464f96c85f89f74d",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"uploads",
+								"destination",
+								"save",
+								"catalogue",
+								"647656dd464f96c85f89f74d"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "from",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "noPaginate",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Actualiza o registra las imagenes que se presentaran en el catalogo del destino turistico. la imagen debe ir con una breve descripcion. En caso para actualizarla debe enviar el mismo archivo con su nombre de origen del backend o de lo contrario puede registrar la imagen como una nueva."
+					},
+					"response": []
+				},
+				{
+					"name": "Show Images Touristic Destinations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/uploads/destination/show/catalogue/64765747c9d2283c50b5277c",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"uploads",
+								"destination",
+								"show",
+								"catalogue",
+								"64765747c9d2283c50b5277c"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "from",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "noPaginate",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Este endpoint muestra las imagenes almacenadas del catalogo del destino turistico"
+					},
+					"response": []
+				},
+				{
+					"name": "get Img User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/uploads/users/6472396b3aa533f59a1183e1",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"uploads",
+								"users",
+								"6472396b3aa533f59a1183e1"
+							],
+							"query": [
+								{
+									"key": "limite",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "desde",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Este endpoint muestra la imagen del usuario del perfil."
+					},
+					"response": []
+				},
+				{
+					"name": "get Img Destination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/uploads/destinations/64750ae6de700b4a87ff6c62",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"uploads",
+								"destinations",
+								"64750ae6de700b4a87ff6c62"
+							],
+							"query": [
+								{
+									"key": "limite",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "desde",
+									"value": "5",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Este endpoint regresa la imagen representativa del destino turistico."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

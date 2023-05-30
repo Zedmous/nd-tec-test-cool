@@ -1,4 +1,4 @@
-const { DestinationModel } = require("../models")
+const { DestinationModel,ImgDestinationModel } = require("../models")
 
 
 
@@ -184,12 +184,49 @@ const deletedDestination = async (id="") => {
     }
 }
 
+const updatedImgDestination = async (id,datainput) => {
+    try {
+        const {
+            img,
+            id_destination
+        } = datainput;
+        
+        let imgDestination= await ImgDestinationModel.findById(id)
+        if(imgDestination){
+            //actualiza la imagen
+            imgDestination.img=img;
+            imgDestination.save()
+
+        }else{
+            //registra la imagen
+            const datamodel={
+                img,
+                destination:id_destination
+            }
+            imgDestination= new ImgDestination(datamodel)
+            await destination.save()
+        }
+        return {
+            message: `Destination updated`,
+            status: 201,
+            imgDestination
+            
+        }
+    } catch (error) {
+        console.log(error)
+        return {
+            message: `img Destination not updated`,
+            status: 500
+        }
+    }
+}
 module.exports={
     findAllDestination,
     findDestinationById,
     findDestinationByNameNotId,
     createdDestination,
     updatedDestination,
-    deletedDestination
+    deletedDestination,
+    updatedImgDestination
 
 }

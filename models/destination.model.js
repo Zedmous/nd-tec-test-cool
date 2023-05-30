@@ -28,8 +28,9 @@ const DestinationSchema=Schema({
         five:Number
     },
     img: {
-        type:[String]
+        type:String
     },
+    catalogue:[{description:String,img:String}],
     status:{
         type:Boolean,
         default:true,

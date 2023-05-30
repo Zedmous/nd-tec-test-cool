@@ -3,11 +3,12 @@ const { check } = require('express-validator');
 const {
     validateFields,
     validateJWT,
-    validateRoleAdmin
+    validateRoleAdmin,
+    validateArchive
 } = require('../middlewares')
 
 const { existNameDestination, existDestinationById } = require('../helpers');
-const {  getDestinations, getDestinationById,postDestination, putDestination, deleteDestination } = require('../controllers/destination.controller');
+const { getDestinations, getDestinationById, postDestination, putDestination, deleteDestination, upImgDestination } = require('../controllers/destination.controller');
 const router = Router();
 
 router.get('/', getDestinations);
@@ -20,6 +21,7 @@ router.get('/:id', [
 
 router.post(
     '/', [
+    validateJWT,
     check("name", "The name field is required").not().isEmpty(),
     check("name", "Name in use, there is already a destination with this name.").custom(existNameDestination),
     check("name", "The name field requires a minimun of 3 characters").isLength({ min: 3 }),
@@ -35,6 +37,8 @@ router.post(
 router.put(
     '/:id', [
     validateJWT,
+    check('id', 'It is not a valid mongo id').isMongoId(),
+    check("id").custom(existDestinationById),
     check("name", "The name field is required").not().isEmpty(),
     check("name", "The name field requires a minimun of 3 characters").isLength({ min: 3 }),
     check("description", "The description field is required").not().isEmpty(),
@@ -45,7 +49,6 @@ router.put(
     check("rating", "The rating field is required").not().isEmpty(),
     validateFields],
     putDestination)
-
 router.delete(
     '/:id', [
     validateJWT,
