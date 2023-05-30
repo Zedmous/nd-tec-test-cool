@@ -1,17 +1,14 @@
-# Nombre del proyecto
-API SOBRE DESTINOS TURISTICOS
-
-
+# API Destinations Touristic Test Cool
 ## Descripción del proyecto
 
-Este proyecto esta es una mini api con la finalidad de llevar registro de los usuarios y destinos turisticos, con las operacioens basicas.
+Este proyecto esta es una mini api con la finalidad de llevar registro de los usuarios y destinos turísticos, con las operacioens basicas.
 
 ## Funcionalidades
 
 - Registrar usuarios.
 - Autenticar usuarios
-- Gestionar los desinos turisticos
-- Subir imagenes sobre el destino turisticos.
+- Gestionar los destinos turísticos
+- Subir imagenes sobre el destinos turísticos.
 - Autenticación de algunas rutas de usuarios
 
 ## Cómo usarlo
@@ -35,11 +32,6 @@ Este proyecto está desarrollado con las siguientes tecnologías:
 - Mongo DB
 - Mongoose
 - Git
+- Postman
 
-## Pruebas
-
-
-## Demo
-
-La demo aun no esta disponible, recomiendo correrlo en su local.
 
